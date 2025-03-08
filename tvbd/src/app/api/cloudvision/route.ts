@@ -30,7 +30,7 @@ interface FactCheckResponse {
 async function checkFact(text: string): Promise<FactCheckClaim[]> {
     try {
         // 🔹 Extract only the first 150 characters to improve search accuracy
-        const shortenedText = text.split(".")[0].slice(0, 150);
+        const shortenedText = text.split(".")[0].slice(0, 50);
 
         console.log("Fact Checking Query:", shortenedText); // Debugging log
 
