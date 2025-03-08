@@ -13,7 +13,7 @@ export default function ImageUploader() {
         const formData = new FormData();
         formData.append("file", file);
 
-        const res = await fetch("/api/textVerification", {
+        const res = await fetch("/api/cloudvision", {
             method: "POST",
             body: formData,
         });
