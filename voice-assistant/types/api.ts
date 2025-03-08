@@ -18,3 +18,17 @@ export interface AudioProcessingError {
   code: string;
   message: string;
 }
+
+// Define the HighlightArea interface
+export interface HighlightArea {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export type scannerStackParamList = {
+  scanner: undefined;
+  HighlightScreen: { imageUri: string };
+  FactCheckScreen: { query: string; highlights?: HighlightArea[]; imageUri?: string };
+};

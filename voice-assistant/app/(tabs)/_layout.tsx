@@ -1,5 +1,6 @@
-import { Tabs } from 'expo-router';
-import { Mic, History, Settings } from 'lucide-react-native';
+// ./app/(tabs)/_layout.tsx
+import { Tabs } from "expo-router";
+import { Mic, History, Settings, Camera } from "lucide-react-native";
 
 export default function TabLayout() {
   return (
@@ -7,25 +8,31 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#1a1a1a',
-          borderTopColor: '#333',
+          backgroundColor: "#1a1a1a",
+          borderTopColor: "#333",
         },
-        tabBarActiveTintColor: '#10b981',
-        tabBarInactiveTintColor: '#666',
-      }}>
+        tabBarActiveTintColor: "#10b981",
+        tabBarInactiveTintColor: "#666",
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Verify',
-          tabBarIcon: ({ size, color }) => (
-            <Mic size={size} color={color} />
-          ),
+          title: "Verify",
+          tabBarIcon: ({ size, color }) => <Mic size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="scanner" // Changed from "scanner/scannerScreen" to "scanner"
+        options={{
+          title: "Scanner",
+          tabBarIcon: ({ size, color }) => <Camera size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="history"
         options={{
-          title: 'History',
+          title: "History",
           tabBarIcon: ({ size, color }) => (
             <History size={size} color={color} />
           ),
@@ -34,7 +41,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
+          title: "Settings",
           tabBarIcon: ({ size, color }) => (
             <Settings size={size} color={color} />
           ),
