@@ -4,3 +4,4 @@ export const speechToTextService = {
         return "This is a placeholder text since we're using the browser's Web Speech API.";
     }
 };
+ 
