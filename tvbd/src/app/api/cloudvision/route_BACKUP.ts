@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
                 try {
                     const result = JSON.parse(stdout.trim()); // Now safe to parse
                     return resolve(NextResponse.json(result));
-                } catch (parseError) {
+                } catch {
                     console.error("Failed to parse OCR output:", stdout);
                     return resolve(NextResponse.json({ error: "Invalid OCR output", details: stdout }, { status: 500 }));
                 }

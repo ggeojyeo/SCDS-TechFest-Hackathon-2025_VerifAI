@@ -47,7 +47,7 @@ async function checkFact(text: string): Promise<FactCheckClaim[]> {
 }
 
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<Response> {
     try {
         const formData = await req.formData();
         const file = formData.get("file") as File;
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
 
         console.log("Running command:", command);
 
-        return new Promise((resolve) => {
+        return new Promise<Response>((resolve) => {
             exec(command, async (error, stdout, stderr) => {
                 if (error) {
                     console.error("OCR Error:", stderr);
@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
                             factCheckResults,
                         })
                     );
-                } catch (parseError) {
+                } catch {
                     console.error("Failed to parse OCR output:", stdout);
                     return resolve(NextResponse.json({ error: "Invalid OCR output", details: stdout }, { status: 500 }));
                 }

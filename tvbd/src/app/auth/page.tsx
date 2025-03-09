@@ -20,7 +20,7 @@ export default function AuthPage() {
 
       const data = await res.json();
       setMessage(data.message || data.error);
-    } catch (error) {
+    } catch {
       setMessage("Something went wrong");
     }
 

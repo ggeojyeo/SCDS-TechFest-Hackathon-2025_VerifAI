@@ -2,10 +2,22 @@
 
 import { useState } from "react";
 
+// Define TypeScript interfaces for Fact Check API response
+interface FactCheckClaim {
+  text: string;
+  claimReview?: FactCheckReview[];
+}
+
+interface FactCheckReview {
+  publisher: { name: string };
+  textualRating: string;
+  url: string;
+}
+
 export default function Page() {
   const [image, setImage] = useState<File | null>(null);
   const [text, setText] = useState("");
-  const [factCheck, setFactCheck] = useState<any[]>([]);
+  const [factCheck, setFactCheck] = useState<FactCheckClaim[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Handle File Selection
@@ -29,7 +41,8 @@ export default function Page() {
         body: formData,
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as { extractedText: string; factCheckResults: FactCheckClaim[] };
+
       setText(data.extractedText || "No text extracted.");
       setFactCheck(data.factCheckResults || []);
     } catch (error) {
@@ -65,7 +78,7 @@ export default function Page() {
           {factCheck.map((claim, index) => (
             <div key={index} className="border p-2 mt-2">
               <p><strong>Claim:</strong> {claim.text}</p>
-              {claim.claimReview?.map((review: any, i: number) => (
+              {claim.claimReview?.map((review: FactCheckReview, i: number) => (
                 <div key={i}>
                   <p><strong>Fact Source:</strong> {review.publisher.name}</p>
                   <p><strong>Verdict:</strong> {review.textualRating}</p>

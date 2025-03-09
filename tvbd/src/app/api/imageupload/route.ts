@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         await writeFile(filePath, buffer);
 
         return NextResponse.json({ message: "File uploaded successfully!", url: `/textVerificationUploads/${file.name}` }, { status: 200 });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 }
