@@ -1,0 +1,18 @@
+# 🔹 Ignore environment variables
+.env
+.env.local
+
+# 🔹 Ignore Google Cloud credentials
+config/google-credentials.json
+
+# 🔹 Ignore dependencies (can be installed with npm install)
+node_modules/
+
+# 🔹 Ignore log files
+logs/
+*.log
+npm-debug.log*
+
+# 🔹 Ignore build artifacts
+dist/
+build/
